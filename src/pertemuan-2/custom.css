@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barbie's Magical World 💖</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: 'Comic Sans MS', 'Chalkboard SE', 'Poppins', cursive, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            
+            /* Background barbie dengan warna-warni ceria */
+            background: linear-gradient(135deg, #ffb3c6, #a3d8f0, #fff0a5, #b5e6b5, #ffb3d9);
+            background-size: 500% 500%;
+            animation: barbieRainbow 12s ease infinite;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        @keyframes barbieRainbow {
+            0% { background-position: 0% 0% }
+            25% { background-position: 50% 50% }
+            50% { background-position: 100% 100% }
+            75% { background-position: 50% 50% }
+            100% { background-position: 0% 0% }
+        }
+
+        /* Dekorasi floating di luar card - PERMEN DAN BUNGA */
+        .floating-candy {
+            position: fixed;
+            pointer-events: none;
+            z-index: 5;
+            font-size: 2rem;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .candy-1 { top: 5%; left: 2%; animation-delay: 0s; color: #ff99cc; text-shadow: 0 5px 10px #ff4d94; }
+        .candy-2 { top: 15%; right: 3%; animation-delay: 1s; color: #a3d8f0; text-shadow: 0 5px 10px #4da6ff; }
+        .candy-3 { bottom: 10%; left: 5%; animation-delay: 2s; color: #fff0a5; text-shadow: 0 5px 10px #ffcc00; }
+        .candy-4 { bottom: 20%; right: 4%; animation-delay: 3s; color: #b5e6b5; text-shadow: 0 5px 10px #4CAF50; }
+        .candy-5 { top: 25%; left: 8%; animation-delay: 4s; color: #ffb3d9; text-shadow: 0 5px 10px #ff66b2; }
+        .candy-6 { top: 45%; right: 6%; animation-delay: 5s; color: #c1a0f5; text-shadow: 0 5px 10px #9933ff; }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-25px) rotate(10deg); }
+            100% { transform: translateY(0) rotate(0deg); }
+        }
+
+        /* Bintang dan hati ekstra */
+        .floating-stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .floating-stars::before,
+        .floating-stars::after {
+            content: '✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦';
+            position: absolute;
+            top: 30px;
+            left: 0;
+            right: 0;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 28px;
+            white-space: nowrap;
+            animation: sparkleHorizontal 40s linear infinite;
+            text-shadow: 0 0 15px #ff99cc, 0 0 20px #a3d8f0, 0 0 25px #fff0a5;
+        }
+
+        .floating-stars::after {
+            content: '❤️ ❤️ ❤️ ❤️ ❤️ ❤️ ❤️ ❤️ ❤️ ❤️ ❤️ ❤️ ❤️ ❤️ ❤️ ❤️ ❤️ ❤️ ❤️ ❤️';
+            top: auto;
+            bottom: 30px;
+            color: rgba(255, 105, 180, 0.5);
+            font-size: 24px;
+            animation: sparkleHorizontal 35s linear infinite reverse;
+        }
+
+        @keyframes sparkleHorizontal {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        /* CARD UTAMA - SUPER BARBIE DENGAN WARNA-WARNI */
+        .card {
+            max-width: 750px;
+            width: 100%;
+            padding: 40px;
+            
+            /* Background dengan aksen warna-warni */
+            background: radial-gradient(circle at 20% 30%, #ffffff, #ffe4f0, #ffe0e8);
+            border: 10px double #ff4d94;
+            border-radius: 80px 80px 80px 80px / 60px 60px 60px 60px;
+            
+            /* Bayangan warna-warni */
+            box-shadow: 
+                0 25px 0 #d44a7a,
+                0 35px 35px rgba(255, 20, 147, 0.4),
+                0 0 0 10px #a3d8f0,
+                0 0 0 16px #fff0a5,
+                0 0 0 22px #b5e6b5,
+                inset 0 0 40px #ff99ff;
+            
+            position: relative;
+            z-index: 20;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        /* Efek hover lebih ceria */
+        .card:hover {
+            transform: scale(1.02) rotate(1.5deg);
+            box-shadow: 
+                0 30px 0 #d44a7a,
+                0 40px 40px rgba(255, 20, 147, 0.5),
+                0 0 0 12px #b5e6b5,
+                0 0 0 18px #fff0a5,
+                0 0 0 24px #a3d8f0,
+                inset 0 0 50px #ffb3e6;
+        }
+
+        /* Hiasan pita di card dengan warna baru */
+        .card .bow {
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 50px;
+            background: linear-gradient(135deg, #ff99cc, #a3d8f0, #fff0a5);
+            border-radius: 50px 50px 0 0;
+            box-shadow: 0 -8px 0 #ff3399;
+            z-index: 25;
+        }
+
+        .card .bow::before,
+        .card .bow::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 50px;
+            height: 60px;
+            background: linear-gradient(135deg, #ffb3d9, #b5e6b5);
+            border-radius: 50px 50px 0 50px;
+            box-shadow: 0 -5px 0 #ff4d94;
+        }
+
+        .card .bow::before {
+            left: -25px;
+            transform: rotate(-35deg);
+        }
+
+        .card .bow::after {
+            right: -25px;
+            transform: rotate(35deg) scaleX(-1);
+        }
+
+        /* Kepala barbie lebih detail */
+        .barbie-head {
+            position: absolute;
+            top: -70px;
+            right: -40px;
+            width: 120px;
+            height: 120px;
+            background: #ffe0b0;
+            border-radius: 50% 50% 45% 45%;
+            border: 6px solid #ff80b3;
+            box-shadow: 0 10px 0 #d44a7a, 0 0 0 4px #a3d8f0;
+            z-index: 30;
+        }
+
+        .barbie-head .hair-left {
+            position: absolute;
+            top: -20px;
+            left: -5px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #ffcc66, #ffb347);
+            border-radius: 50% 0 50% 0;
+            transform: rotate(-25deg);
+        }
+
+        .barbie-head .hair-right {
+            position: absolute;
+            top: -20px;
+            right: -5px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #ffcc66, #ffb347);
+            border-radius: 0 50% 0 50%;
+            transform: rotate(25deg);
+        }
+
+        .barbie-head .crown {
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 25px;
+            background: linear-gradient(135deg, #fff0a5, #ffd700);
+            clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
+            border-radius: 10px 10px 0 0;
+            border-bottom: 3px solid #ff80b3;
+        }
+
+        .barbie-head .crown::before,
+        .barbie-head .crown::after {
+            content: '✧';
+            position: absolute;
+            top: -15px;
+            font-size: 20px;
+            color: #ffd700;
+        }
+        .barbie-head .crown::before { left: -5px; }
+        .barbie-head .crown::after { right: -5px; }
+
+        .barbie-head .eyes {
+            position: absolute;
+            top: 45px;
+            left: 20px;
+            right: 20px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .barbie-head .eye {
+            width: 18px;
+            height: 22px;
+            background: white;
+            border-radius: 50%;
+            border-bottom: 5px solid #663300;
+            position: relative;
+        }
+
+        .barbie-head .eye::after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 6px;
+            height: 6px;
+            background: black;
+            border-radius: 50%;
+        }
+
+        .barbie-head .mouth {
+            position: absolute;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 35px;
+            height: 18px;
+            background: #ff69b4;
+            border-radius: 0 0 30px 30px;
+            border-top: 2px solid #ff1493;
+        }
+
+        .barbie-head .blush {
+            position: absolute;
+            bottom: 35px;
+            left: 10px;
+            right: 10px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .barbie-head .blush span {
+            width: 12px;
+            height: 6px;
+            background: #ffa07a;
+            border-radius: 50%;
+            opacity: 0.5;
+        }
+
+        /* Judul super barbie dengan warna-warni */
+        h1 {
+            font-size: 4rem;
+            text-align: center;
+            margin-bottom: 15px;
+            font-family: 'Comic Sans MS', cursive;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            
+            background: linear-gradient(45deg, #ff3399, #4da6ff, #ffcc00, #4CAF50, #ff66b2);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            
+            text-shadow: 
+                4px 4px 0 #ffb3d9,
+                8px 8px 0 #a3d8f0,
+                12px 12px 15px rgba(255, 20, 147, 0.3);
+            
+            transform: rotate(-2deg);
+            animation: glitterRainbow 3s ease infinite;
+        }
+
+        @keyframes glitterRainbow {
+            0% { text-shadow: 4px 4px 0 #ffb3d9, 8px 8px 0 #a3d8f0, 0 0 20px #fff; }
+            33% { text-shadow: 4px 4px 0 #a3d8f0, 8px 8px 0 #fff0a5, 0 0 30px #ffc0cb; }
+            66% { text-shadow: 4px 4px 0 #fff0a5, 8px 8px 0 #b5e6b5, 0 0 30px #a3d8f0; }
+            100% { text-shadow: 4px 4px 0 #ffb3d9, 8px 8px 0 #a3d8f0, 0 0 20px #fff; }
+        }
+
+        /* Subtitle gemas */
+        .cute-subtitle {
+            text-align: center;
+            font-size: 1.5rem;
+            color: #ff4d94;
+            margin-bottom: 30px;
+            padding: 12px 25px;
+            background: linear-gradient(135deg, rgba(163, 216, 240, 0.3), rgba(255, 240, 165, 0.3), rgba(181, 230, 181, 0.3));
+            border-radius: 50px 15px 50px 15px;
+            border: 4px dotted #ff99cc;
+            display: inline-block;
+            margin-left: auto;
+            margin-right: auto;
+            width: fit-content;
+            box-shadow: 0 8px 0 #ff80bf;
+            transform: rotate(1deg);
+            backdrop-filter: blur(5px);
+        }
+
+        /* Kotak-kotak barbie dengan warna-warni */
+        .barbie-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .barbie-item {
+            background: linear-gradient(135deg, #ffe6f2, #e6f3ff, #ffffe6);
+            padding: 20px 15px;
+            border-radius: 50px 15px 50px 15px;
+            border: 5px solid;
+            border-color: #ff99cc #a3d8f0 #b5e6b5 #fff0a5;
+            box-shadow: 0 12px 0 #ff66b2;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .barbie-item::before {
+            content: '♡';
+            position: absolute;
+            top: 5px;
+            left: 10px;
+            font-size: 20px;
+            color: rgba(255, 105, 180, 0.3);
+        }
+
+        .barbie-item::after {
+            content: '♡';
+            position: absolute;
+            bottom: 5px;
+            right: 10px;
+            font-size: 20px;
+            color: rgba(163, 216, 240, 0.3);
+        }
+
+        .barbie-item:hover {
+            transform: translateY(-10px) rotate(1.5deg);
+            background: #ffd9e9;
+            border-color: #ff4d94;
+            box-shadow: 0 18px 0 #ff4d94;
+        }
+
+        .barbie-item .cute-icon {
+            font-size: 2.5rem;
+            margin-bottom: 8px;
+            color: #ff80b3;
+            animation: bounce 2s ease infinite;
+        }
+
+        .barbie-item h3 {
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, #ff1a75, #4da6ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 8px;
+        }
+
+        .barbie-item p {
+            font-size: 1rem;
+            color: #6b3f5c;
+            line-height: 1.4;
+        }
+
+        /* Bagian tengah dengan boneka warna-warni */
+        .dolly-section {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            margin: 35px 0;
+            background: linear-gradient(135deg, #ffe0f0, #e0f0ff, #f0ffe0);
+            padding: 30px;
+            border-radius: 120px 40px 120px 40px;
+            border: 6px dashed #ff99cc;
+            position: relative;
+        }
+
+        .dolly-dress {
+            width: 100px;
+            height: 120px;
+            background: linear-gradient(135deg, #ffb3d9, #a3d8f0);
+            border-radius: 40% 40% 20% 20%;
+            position: relative;
+            border: 5px solid #ff66b2;
+            flex-shrink: 0;
+        }
+
+        .dolly-dress .head {
+            position: absolute;
+            top: -35px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 45px;
+            height: 45px;
+            background: #ffe0b0;
+            border-radius: 50%;
+            border: 5px solid #ff66b2;
+        }
+
+        .dolly-dress .dress-dots {
+            position: absolute;
+            top: 30px;
+            left: 10px;
+            right: 10px;
+            display: flex;
+            justify-content: space-around;
+        }
+        .dolly-dress .dress-dots span {
+            width: 8px;
+            height: 8px;
+            background: #fff0a5;
+            border-radius: 50%;
+        }
+
+        .dolly-dress .skirt {
+            position: absolute;
+            bottom: -10px;
+            left: -8px;
+            right: -8px;
+            height: 35px;
+            background: linear-gradient(135deg, #ff99cc, #b5e6b5);
+            border-radius: 0 0 40px 40px;
+            border: 4px solid #ff4d94;
+        }
+
+        .dolly-text {
+            flex: 1;
+            font-size: 1.1rem;
+            color: #b34d75;
+            line-height: 1.6;
+            font-style: italic;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 18px;
+            border-radius: 40px 15px 40px 15px;
+            border: 4px solid #ff80bf;
+            backdrop-filter: blur(5px);
+        }
+
+        /* Koleksi karakter dengan warna baru */
+        .characters {
+            display: flex;
+            justify-content: space-around;
+            margin: 35px 0;
+            flex-wrap: wrap;
+            gap: 15px;
+            background: rgba(255, 255, 255, 0.3);
+            padding: 20px;
+            border-radius: 60px;
+            backdrop-filter: blur(5px);
+        }
+
+        .character {
+            background: linear-gradient(135deg, #ffd9e9, #d9f0ff);
+            width: 75px;
+            height: 75px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            border: 5px solid;
+            border-color: #ff80b3 #a3d8f0 #b5e6b5 #fff0a5;
+            box-shadow: 0 8px 0 #ff4d94;
+            transition: all 0.3s ease;
+        }
+
+        .character:hover {
+            transform: scale(1.2) rotate(15deg);
+            background: #ffc0e0;
+            border-color: #ff3399;
+            box-shadow: 0 12px 0 #ff3399;
+        }
+
+        /* Divider super cute warna-warni */
+        .cute-divider {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin: 35px 0;
+        }
+
+        .cute-divider .line {
+            flex: 1;
+            height: 6px;
+            background: linear-gradient(90deg, #ff99cc, #a3d8f0, #fff0a5, #b5e6b5, #ff99cc);
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .cute-divider .line::before,
+        .cute-divider .line::after {
+            content: '✧';
+            position: absolute;
+            top: -18px;
+            font-size: 30px;
+            animation: spin 4s linear infinite;
+        }
+
+        .cute-divider .line::before { 
+            left: 10px; 
+            color: #ff99cc;
+        }
+        .cute-divider .line::after { 
+            right: 10px; 
+            color: #b5e6b5;
+        }
+
+        .cute-divider .star {
+            font-size: 45px;
+            background: linear-gradient(135deg, #ff99cc, #a3d8f0, #fff0a5);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: spin 4s linear infinite;
+        }
+
+        /* Bagian pesan barbie warna-warni */
+        .barbie-message {
+            background: linear-gradient(135deg, #ffb3d9, #a3d8f0, #b5e6b5);
+            padding: 30px;
+            border-radius: 60px 60px 60px 60px / 40px 40px 40px 40px;
+            border: 8px double #ff4d94;
+            margin: 30px 0;
+            color: white;
+            font-size: 1.3rem;
+            text-align: center;
+            font-weight: bold;
+            letter-spacing: 2px;
+            box-shadow: inset 0 -10px 0 #ff66b2, 0 15px 25px rgba(255, 20, 147, 0.2);
+            position: relative;
+            text-shadow: 2px 2px 0 #ff3399;
+        }
+
+        .barbie-message::before,
+        .barbie-message::after {
+            content: '☁';
+            position: absolute;
+            font-size: 50px;
+            background: linear-gradient(135deg, #fff0a5, white);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            filter: drop-shadow(0 0 5px white);
+        }
+
+        .barbie-message::before {
+            top: -30px;
+            left: 20px;
+            transform: rotate(-10deg);
+        }
+
+        .barbie-message::after {
+            bottom: -30px;
+            right: 20px;
+            transform: rotate(10deg);
+        }
+
+        /* Footer tag warna-warni */
+        .cute-footer {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 35px;
+            flex-wrap: wrap;
+        }
+
+        .cute-tag {
+            background: linear-gradient(135deg, #ffe0f0, #e0f0ff);
+            padding: 12px 22px;
+            border-radius: 40px 15px 40px 15px;
+            border: 4px solid;
+            border-color: #ff80b3 #a3d8f0 #b5e6b5 #fff0a5;
+            font-size: 1rem;
+            color: #ff1a75;
+            font-weight: bold;
+            box-shadow: 0 6px 0 #ff4d94;
+            transition: all 0.3s ease;
+        }
+
+        .cute-tag:hover {
+            transform: scale(1.1) rotate(-3deg);
+            background: #ffc0e0;
+            border-color: #ff3399;
+        }
+
+        /* Greeting barbie super warna-warni */
+        .barbie-greeting {
+            text-align: center;
+            margin-top: 40px;
+            padding: 25px;
+            background: linear-gradient(135deg, #ffffffcc, #a3d8f0cc, #fff0a5cc);
+            border-radius: 60px;
+            font-size: 1.8rem;
+            color: #ff3399;
+            border: 6px dotted #ff99cc;
+            transform: rotate(-1deg);
+            backdrop-filter: blur(5px);
+            font-weight: bold;
+            letter-spacing: 3px;
+            position: relative;
+            overflow: hidden;
+            text-shadow: 2px 2px 0 #fff0a5;
+        }
+
+        .barbie-greeting span {
+            display: inline-block;
+            animation: bounce 2s ease infinite;
+            margin: 0 5px;
+        }
+
+        .barbie-greeting span:nth-child(2) { animation-delay: 0.2s; }
+        .barbie-greeting span:nth-child(3) { animation-delay: 0.4s; }
+        .barbie-greeting span:nth-child(4) { animation-delay: 0.6s; }
+        .barbie-greeting span:nth-child(5) { animation-delay: 0.8s; }
+        .barbie-greeting span:nth-child(6) { animation-delay: 1s; }
+        .barbie-greeting span:nth-child(7) { animation-delay: 1.2s; }
+        .barbie-greeting span:nth-child(8) { animation-delay: 1.4s; }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        /* Tempat untuk gambar barbie */
+        .barbie-photo-frame {
+            margin: 30px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .barbie-photo-frame .frame {
+            display: inline-block;
+            padding: 15px;
+            background: linear-gradient(135deg, #ff99cc, #a3d8f0, #fff0a5, #b5e6b5);
+            border-radius: 60px 20px 60px 20px;
+            border: 8px solid white;
+            box-shadow: 0 15px 0 #ff4d94, 0 0 0 5px #ffb3d9;
+            transform: rotate(-2deg);
+        }
+
+        .barbie-photo-frame .photo-placeholder {
+            width: 250px;
+            height: 200px;
+            background: linear-gradient(135deg, #ffe0f0, #e0f0ff);
+            border-radius: 40px 10px 40px 10px;
+            border: 5px dashed #ff80bf;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #ff1a75;
+            font-weight: bold;
+        }
+
+        .barbie-photo-frame .photo-placeholder::before {
+            content: '📷 tempat untuk gambar barbie kesayanganmu';
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .card { padding: 25px; }
+            h1 { font-size: 2.8rem; }
+            .barbie-grid { grid-template-columns: 1fr; }
+            .dolly-section { flex-direction: column; text-align: center; }
+            .floating-candy { display: none; }
+            .barbie-head { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Dekorasi floating di luar card - PERMEN DAN BUNGA SUPER CUTE -->
+    <div class="floating-candy candy-1">🍭</div>
+    <div class="floating-candy candy-2">🍬</div>
+    <div class="floating-candy candy-3">🍦</div>
+    <div class="floating-candy candy-4">🧁</div>
+    <div class="floating-candy candy-5">🌸</div>
+    <div class="floating-candy candy-6">🌈</div>
+    
+    <!-- Bintang dan hati berkilauan -->
+    <div class="floating-stars"></div>
+
+    <div class="card">
+        <!-- Hiasan pita super warna-warni -->
+        <div class="bow"></div>
+        
+        <!-- Kepala barbie dengan mahkota -->
+        <div class="barbie-head">
+            <div class="hair-left"></div>
+            <div class="hair-right"></div>
+            <div class="crown"></div>
+            <div class="eyes">
+                <div class="eye"></div>
+                <div class="eye"></div>
+            </div>
+            <div class="blush">
+                <span></span>
+                <span></span>
+            </div>
+            <div class="mouth"></div>
+        </div>
+
+        <!-- Judul super barbie warna-warni -->
+        <h1>Barbie's Dream</h1>
+        <div class="cute-subtitle">
+            where magic and friendship shine
+        </div>
+
+        <!-- Tempat untuk gambar barbie -->
+        <div class="barbie-photo-frame">
+            <div class="frame">
+                <div class="photo-placeholder"></div>
+            </div>
+        </div>
+
+        <!-- Grid barbie dengan warna-warni -->
+        <div class="barbie-grid">
+            <div class="barbie-item">
+                <div class="cute-icon">👛</div>
+                <h3>Pink Fashion</h3>
+                <p>dress up with barbie in the cutest pink outfits and sparkly accessories</p>
+            </div>
+            <div class="barbie-item">
+                <div class="cute-icon">🏰</div>
+                <h3>Dreamhouse</h3>
+                <p>live in the prettiest pink dreamhouse with a rainbow slide and heart pool</p>
+            </div>
+            <div class="barbie-item">
+                <div class="cute-icon">🦄</div>
+                <h3>Unicorn Friends</h3>
+                <p>play with magical unicorns and sparkly ponies in cloud kingdom</p>
+            </div>
+            <div class="barbie-item">
+                <div class="cute-icon">🌸</div>
+                <h3>Flower Garden</h3>
+                <p>pick the prettiest pink flowers and make beautiful fairy gardens</p>
+            </div>
+        </div>
+
+        <!-- Section dengan boneka yang lebih detail -->
+        <div class="dolly-section">
+            <div class="dolly-dress">
+                <div class="head"></div>
+                <div class="dress-dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="skirt"></div>
+            </div>
+            <div class="dolly-text">
+                meet barbie's best friend! she loves tea parties, sparkly dresses, and going on magical adventures every single day
+            </div>
+        </div>
+
+        <!-- Koleksi karakter lebih banyak -->
+        <div class="characters">
+            <div class="character">🐶</div>
+            <div class="character">🐱</div>
+            <div class="character">🦊</div>
+            <div class="character">🐼</div>
+            <div class="character">🐨</div>
+            <div class="character">🦄</div>
+            <div class="character">🐰</div>
+            <div class="character">🐥</div>
+        </div>
+
+        <!-- Divider super cute dengan warna-warni -->
+        <div class="cute-divider">
+            <span class="line"></span>
+            <span class="star">✧</span>
+            <span class="line"></span>
+        </div>
+
+        <!-- Pesan barbie dengan warna-warni -->
+        <div class="barbie-message">
+            you are magic, you are sparkle, you are barbie! 
+            always shine bright like the princess you are
+        </div>
+
+        <!-- Koleksi tag barbie warna-warni -->
+        <div class="cute-footer">
+            <span class="cute-tag">pink princess</span>
+            <span class="cute-tag">dream big</span>
+            <span class="cute-tag">sparkle queen</span>
+            <span class="cute-tag">barbie world</span>
+            <span class="cute-tag">cute & sweet</span>
+            <span class="cute-tag">fairy magic</span>
+            <span class="cute-tag">rainbow</span>
+            <span class="cute-tag">unicorn</span>
+        </div>
+
+        <!-- Greeting barbie super warna-warni -->
+        <div class="barbie-greeting">
+            <span>b</span>
+            <span>a</span>
+            <span>r</span>
+            <span>b</span>
+            <span>i</span>
+            <span>e</span>
+            <span>♡</span>
+            <span>f</span>
+            <span>o</span>
+            <span>r</span>
+            <span>e</span>
+            <span>v</span>
+            <span>e</span>
+            <span>r</span>
+        </div>
+    </div>
+</body>
+</html>
