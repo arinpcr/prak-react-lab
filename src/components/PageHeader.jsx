@@ -1,22 +1,24 @@
-export default function PageHeader(props) {
+import React from 'react';
+
+export default function PageHeader({ title, breadcrumb, children }) {
     return (
-        <div id="pageheader-container">
+        <div id="pageheader-container" className="flex justify-between items-center mb-8 px-2">
             <div id="pageheader-left">
-                <span id="page-title">
-                    {props.title}
+                <span id="page-title" className="text-3xl font-bold block text-gray-800">
+                    {title}
                 </span>
-                <div id="breadcrumb-links">
-                    <span id="breadcrumb-home">Home</span>
+                <div id="breadcrumb-links" className="flex items-center gap-2 text-sm text-gray-400 mt-1 font-medium">
+                    <span>Home</span>
                     <span id="breadcrumb-separator">/</span>
-                    <span id="breadcrumb-current">Home Detail</span>
-                    <span id="breadcrumb-separator">/</span>
-                    <span id="breadcrumb-current">Home Very Detail</span>
+                    <span id="breadcrumb-current" className="text-hijau font-semibold">
+                        {Array.isArray(breadcrumb) ? breadcrumb.join(" / ") : breadcrumb}
+                    </span>
                 </div>
             </div>
-            <div id="action-button">
-                <button id="add-button">
-	                Add Button
-	            </button>
+
+            {/* Kita paksa tampil dengan !flex agar menimpa CSS yang hidden */}
+            <div id="action-button" className="!flex items-center justify-end">
+                {children}
             </div>
         </div>
     );
