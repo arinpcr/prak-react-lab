@@ -1,4 +1,4 @@
-import { FaThLarge, FaList, FaHeadphonesAlt, FaBan, FaPlus } from "react-icons/fa";
+import { FaThLarge, FaList, FaHeadphonesAlt, FaBan, FaPlus, FaBoxOpen } from "react-icons/fa"; 
 import { NavLink } from "react-router-dom";
 
 export default function Sidebar() {
@@ -10,7 +10,7 @@ export default function Sidebar() {
     }`;
 
   return (
-    <div id="sidebar" className="flex flex-col h-full min-h-screen bg-white p-4">
+    <div id="sidebar" className="flex flex-col h-screen sticky top-0 bg-white p-4 shadow-sm border-r border-gray-50">
       
       {/* --- 1. LOGO SECTION (DENGAN AKSEN CAHAYA & TITIK BULAT) --- */}
       <div id="sidebar-logo" className="relative mb-10 px-4 pt-8 pb-5">
@@ -39,6 +39,11 @@ export default function Sidebar() {
           </li>
           <li>
             <NavLink to="/customers" className={menuClass}><FaHeadphonesAlt /> <span>Customers</span></NavLink>
+          </li>
+          
+          {/* MENU PRODUCTS BARU */}
+          <li>
+            <NavLink to="/products" className={menuClass}><FaBoxOpen /> <span>Products</span></NavLink>
           </li>
           
           <li className="mt-4 pt-4 border-t border-gray-100">
