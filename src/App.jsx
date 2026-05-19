@@ -1,52 +1,102 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useState } from "react";
+// import reactLogo from "./assets/react.svg";
+// import viteLogo from "./assets/vite.svg";
+import "./assets/tailwind.css";
+// import Dashboard from "./pages/Dashboard";
+
 import { Route, Routes } from "react-router-dom";
 import Loading from "./components/Loading";
+// import Orders from "./pages/Orders";
+// import Customers from "./pages/Customers";
 
-// Lazy Imports yang sudah diperbaiki
-const Dashboard = React.lazy(() => import("./pages/Dashboard"));
-const Orders = React.lazy(() => import("./pages/Orders"));
-const Customers = React.lazy(() => import("./pages/Customers"));
-const Products = React.lazy(() => import("./pages/Products"));
-const ProductDetail = React.lazy(() => import("./pages/ProductDetail"));
-const NotFound = React.lazy(() => import("./pages/NotFound"));
-const MainLayout = React.lazy(() => import("./layout/MainLayout"));
-const AuthLayout = React.lazy(() => import("./layout/AuthLayout"));
-const ErrorPage = React.lazy(() => import("./pages/ErrorPage"));
-const Login = React.lazy(() => import("./pages/auth/Login"));
-const Register = React.lazy(() => import("./pages/auth/Register"));
-const Forgot = React.lazy(() => import("./pages/auth/Forgot"));
+// Import komponen ErrorPage yang baru
+// import ErrorPage from "./pages/ErrorPage";
+// import MainLayout from "./layouts/MainLayout";
+// import Login from "./pages/auth/Login";
+// import Register from "./pages/auth/Register";
+// import Forgot from "./pages/auth/Forgot";
+// import AuthLayout from "./layouts/AuthLayout";
+const Customers = React.lazy(() => import("./pages/Customers"))
+const Orders = React.lazy(() => import("./pages/Orders"))
+const Product = React.lazy(() => import("./pages/Products"))
+const MainLayout = React.lazy(() => import("./layout/MainLayout"))
+const ErrorPage = React.lazy(() => import("./pages/ErrorPage"))
+const Login = React.lazy(() => import("./pages/auth/Login"))
+const Register = React.lazy(() => import("./pages/auth/Register"))
+const Forgot = React.lazy(() => import("./pages/auth/Forgot"))
+const AuthLayout = React.lazy(() => import("./layout/AuthLayout"))
+const Dashboard = React.lazy(() => import("./pages/Dashboard"))
+const ProductDetail = React.lazy(() => import("./pages/ProductDetail"))
+const Components = React.lazy(() => import("./pages/Component"));
 
 function App() {
   return (
-    <Suspense fallback={<Loading />}>
+    <>
+      <Suspense fallback={<Loading />}>
       <Routes>
-        {/* --- MAIN APP ROUTES (Dengan Sidebar) --- */}
+        {/* Rute Halaman Utama */}
         <Route element={<MainLayout />}>
           <Route path="/" element={<Dashboard />} />
           <Route path="/orders" element={<Orders />} />
           <Route path="/customers" element={<Customers />} />
-          
-          {/* Route Products & Dynamic Route Product Detail */}
-          <Route path="/products" element={<Products />} />
+          <Route path="/products" element={<Product />} />
           <Route path="/products/:id" element={<ProductDetail />} /> 
+          <Route path="/components" element={<Components />} />
+          {/* RUTE ERROR (400, 401, 403) */}
+          <Route
+            path="/error-400"
+            element={
+              <ErrorPage
+                kodeError="400"
+                deskripsiError="Bad Request! Ada yang salah dengan permintaanmu."
+                gambarError="https://illustrations.popsy.co/blue/crashed-error.svg"
+              />
+            }
+          />
 
-          {/* Error Pages */}
-          <Route path="/error-400" element={ <ErrorPage code="400" title="BAD REQUEST" description="Oops! It Seems You Follow Backlink." lottieUrl="https://embed.lottiefiles.com/animation/78973" /> } />
-          <Route path="/error-401" element={ <ErrorPage code="401" title="UNAUTHORIZED" description="Maaf, kamu tidak punya izin untuk melihat telur Dino ini." lottieUrl="https://embed.lottiefiles.com/animation/78973" /> } />
-          <Route path="/error-403" element={ <ErrorPage code="403" title="FORBIDDEN" description="Waduh! Area ini dijaga Dino, kamu dilarang masuk." lottieUrl="https://embed.lottiefiles.com/animation/78973" /> } />
+          <Route
+            path="/error-401"
+            element={
+              <ErrorPage
+                kodeError="401"
+                deskripsiError="Unauthorized! Kamu harus login dulu."
+                gambarError="https://illustrations.popsy.co/blue/web-design.svg"
+              />
+            }
+          />
 
-          {/* NotFound Route */}
-          <Route path="*" element={<NotFound />} />
+          <Route
+            path="/error-403"
+            element={
+              <ErrorPage
+                kodeError="403"
+                deskripsiError="Forbidden! Akses ditolak masuk ke halaman ini."
+                gambarError="https://illustrations.popsy.co/blue/surreal-hourglass.svg"
+              />
+            }
+          />
+
+          {/* Rute * (Bintang) untuk 404 Not Found. Taruh di paling bawah! */}
+          <Route
+            path="*"
+            element={
+              <ErrorPage
+                kodeError="404"
+                deskripsiError="Halaman Tidak Ditemukan. Sepertinya link yang kamu tuju sudah pindah atau tidak ada."
+                gambarError="https://illustrations.popsy.co/blue/web-design.svg"
+              />
+            }
+          />
+          <Route path="/products/:id" element={<ProductDetail />} /> 
         </Route>
-
-        {/* --- AUTH ROUTES --- */}
-        <Route element={<AuthLayout />}>
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/forgot" element={<Forgot />} />
-        </Route>
+         <Route element={<AuthLayout/>}>
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register/>} />
+            <Route path="/forgot" element={<Forgot/>} />
+        </Route> 
       </Routes>
-    </Suspense>
+      </Suspense>
+    </>
   );
 }
 
