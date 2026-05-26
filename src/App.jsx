@@ -6,6 +6,7 @@ import "./assets/tailwind.css";
 
 import { Route, Routes } from "react-router-dom";
 import Loading from "./components/Loading";
+import FiturXyz from "./pages/FiturXyz";
 // import Orders from "./pages/Orders";
 // import Customers from "./pages/Customers";
 
@@ -42,6 +43,8 @@ function App() {
           <Route path="/products" element={<Product />} />
           <Route path="/products/:id" element={<ProductDetail />} /> 
           <Route path="/components" element={<Components />} />
+          <Route path="/fitur-xyz" element={<FiturXyz />} />
+          
           {/* RUTE ERROR (400, 401, 403) */}
           <Route
             path="/error-400"
