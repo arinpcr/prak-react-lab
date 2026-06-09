@@ -29,6 +29,7 @@ const AuthLayout = React.lazy(() => import("./layout/AuthLayout"))
 const Dashboard = React.lazy(() => import("./pages/Dashboard"))
 const ProductDetail = React.lazy(() => import("./pages/ProductDetail"))
 const Components = React.lazy(() => import("./pages/Component"));
+const Notes = React.lazy(() => import("./pages/Notes"));
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
           <Route path="/products/:id" element={<ProductDetail />} /> 
           <Route path="/components" element={<Components />} />
           <Route path="/fitur-xyz" element={<FiturXyz />} />
+          <Route path="/notes" element={<Notes />} />
           
           {/* RUTE ERROR (400, 401, 403) */}
           <Route

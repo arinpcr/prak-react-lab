@@ -63,6 +63,13 @@ export default function Sidebar() {
                     </NavLink>
                 </li>
 
+                <li>
+                    <NavLink to="/notes" className={menuClass}>
+                        <MdInventory className="text-xl" />
+                        <span className="text-sm">Notes</span>
+                    </NavLink>
+                </li>
+
                 {/* PEMBATAS */}
                 <div className="pt-4 pb-2 px-4 mt-2 border-t border-gray-50">
                     <p className="text-[10px] font-black text-gray-300 uppercase tracking-widest">Error Pages</p>
